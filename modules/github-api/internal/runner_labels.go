@@ -1,11 +1,11 @@
 package internal
 
 import (
-	"github-api/config"
-	"github-api/domain"
+	"github.com/labbs/faker/config"
+	"github.com/labbs/faker/modules/github-api/domain"
 )
 
-func GenerateRunnerLabels(runner config.RunnerConfig) []domain.GithubLabel {
+func GenerateRunnerLabels(runner config.Runner) []domain.GithubLabel {
 	var labels []domain.GithubLabel
 
 	switch runner.Os {

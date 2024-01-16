@@ -1,10 +1,11 @@
 package controller
 
 import (
-	"github-api/config"
-	"github-api/domain"
-	"github-api/internal"
 	"strconv"
+
+	"github.com/labbs/faker/config"
+	"github.com/labbs/faker/modules/github-api/domain"
+	"github.com/labbs/faker/modules/github-api/internal"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
@@ -18,7 +19,7 @@ func (garc *GithubActionsRunnerController) ListRunners(c *fiber.Ctx) error {
 	var runners []domain.GithubActionsRunner
 	var count int
 
-	for _, runnerType := range config.AppConfig.Runners {
+	for _, runnerType := range config.AppConfig.GithubApi.Runners {
 		for i := 0; i < runnerType.Count; i++ {
 			count++
 			busy := internal.RandomBool()

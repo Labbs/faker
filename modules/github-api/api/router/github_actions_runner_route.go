@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github-api/api/controller"
-	"github-api/bootstrap"
+	"github.com/labbs/faker/modules/github-api/api/controller"
+	"github.com/labbs/faker/modules/github-api/bootstrap"
 )
 
 func NewGithubActionsRunnerRouter(app bootstrap.Application) {

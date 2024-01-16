@@ -14,6 +14,5 @@ func NewApplication() *Application {
 	app := &Application{}
 	app.Logger = InitLogger()
 	app.Fiber = InitFiber(app.Logger)
-	LoadApiConfig(app.Logger)
 	return app
 }

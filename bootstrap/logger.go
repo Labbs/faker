@@ -5,7 +5,7 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github-api/config"
+	"github.com/labbs/faker/config"
 )
 
 func InitLogger() zerolog.Logger {

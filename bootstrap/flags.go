@@ -1,19 +1,19 @@
 package bootstrap
 
 import (
-	"github-api/config"
+	"github.com/labbs/faker/config"
 
 	"github.com/urfave/cli/v2"
 	"github.com/urfave/cli/v2/altsrc"
 )
 
-func Flags() []cli.Flag {
+func GenericFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.StringFlag{
 			Name:        "config",
 			Aliases:     []string{"c"},
 			Usage:       "Load configuration from `FILE`",
-			Value:       "config.yaml",
+			Value:       "config.json",
 			Destination: &config.AppConfig.ConfigFile,
 		},
 		altsrc.NewBoolFlag(&cli.BoolFlag{
@@ -21,6 +21,17 @@ func Flags() []cli.Flag {
 			Usage:       "Enable debug mode",
 			Value:       false,
 			Destination: &config.AppConfig.Debug,
+		}),
+	}
+}
+
+func ServerFlags() []cli.Flag {
+	flags := []cli.Flag{
+		altsrc.NewBoolFlag(&cli.BoolFlag{
+			Name:        "enable-http-logs",
+			Usage:       "Enable HTTP logs",
+			Value:       false,
+			Destination: &config.AppConfig.EnableHTTPLogs,
 		}),
 		altsrc.NewBoolFlag(&cli.BoolFlag{
 			Name:        "pretty-logs",
@@ -35,4 +46,8 @@ func Flags() []cli.Flag {
 			Destination: &config.AppConfig.Port,
 		}),
 	}
+
+	flags = append(flags, GenericFlags()...)
+
+	return flags
 }

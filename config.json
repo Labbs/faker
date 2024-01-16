@@ -1,0 +1,32 @@
+{
+  "port": 8080,
+  "pretty-logs": true,
+  "debug": true,
+
+
+  "github_api": {
+    "runners": [
+      {
+        "name": "linux_runner",
+        "os": "linux",
+        "arch": "x64",
+        "self-hosted": true,
+        "count": 10
+      },
+      {
+        "name": "mac_runner",
+        "os": "macos",
+        "arch": "x64",
+        "self-hosted": true,
+        "count": 2
+      },
+      {
+        "name": "win_runner",
+        "os": "windows",
+        "arch": "x64",
+        "self-hosted": true,
+        "count": 5
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/rs/zerolog"
 
-	"github-api/config"
+	"github.com/labbs/faker/config"
 )
 
 func InitFiber(logger zerolog.Logger) *fiber.App {

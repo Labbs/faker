@@ -1,4 +1,4 @@
-module github-api
+module github.com/labbs/faker
 
 go 1.21.6
 
