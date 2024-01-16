@@ -19,17 +19,53 @@ func (garc *GithubActionsRunnerController) ListRunners(c *fiber.Ctx) error {
 	var runners []domain.GithubActionsRunner
 	var count int
 
-	for _, runnerType := range config.AppConfig.GithubApi.Runners {
-		for i := 0; i < runnerType.Count; i++ {
+	if config.AppConfig.GithubApi.LinuxRunners.Count > 0 {
+		for i := 0; i < config.AppConfig.GithubApi.LinuxRunners.Count; i++ {
 			count++
 			busy := internal.RandomBool()
 			runners = append(runners, domain.GithubActionsRunner{
 				Id:     count,
-				Os:     runnerType.Os,
-				Name:   runnerType.Name + "_" + strconv.Itoa(count),
+				Os:     "Linux",
+				Name:   "linux_" + strconv.Itoa(count),
 				Busy:   busy,
 				Status: internal.RandomStatus(busy),
-				Labels: internal.GenerateRunnerLabels(runnerType),
+				Labels: internal.GenerateRunnerLabels("linux",
+					config.AppConfig.GithubApi.LinuxRunners.Arch,
+					config.AppConfig.GithubApi.LinuxRunners.SelfHosted),
+			})
+		}
+	}
+
+	if config.AppConfig.GithubApi.WindowsRunners.Count > 0 {
+		for i := 0; i < config.AppConfig.GithubApi.WindowsRunners.Count; i++ {
+			count++
+			busy := internal.RandomBool()
+			runners = append(runners, domain.GithubActionsRunner{
+				Id:     count,
+				Os:     "Windows",
+				Name:   "windows_" + strconv.Itoa(count),
+				Busy:   busy,
+				Status: internal.RandomStatus(busy),
+				Labels: internal.GenerateRunnerLabels("windows",
+					config.AppConfig.GithubApi.WindowsRunners.Arch,
+					config.AppConfig.GithubApi.WindowsRunners.SelfHosted),
+			})
+		}
+	}
+
+	if config.AppConfig.GithubApi.MacOSRunners.Count > 0 {
+		for i := 0; i < config.AppConfig.GithubApi.MacOSRunners.Count; i++ {
+			count++
+			busy := internal.RandomBool()
+			runners = append(runners, domain.GithubActionsRunner{
+				Id:     count,
+				Os:     "MacOS",
+				Name:   "macos_" + strconv.Itoa(count),
+				Busy:   busy,
+				Status: internal.RandomStatus(busy),
+				Labels: internal.GenerateRunnerLabels("macos",
+					config.AppConfig.GithubApi.MacOSRunners.Arch,
+					config.AppConfig.GithubApi.MacOSRunners.SelfHosted),
 			})
 		}
 	}
