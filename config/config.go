@@ -14,13 +14,13 @@ type Config struct {
 }
 
 type GithubApi struct {
-	Runners []Runner `json:"runners"`
+	LinuxRunners   Runner `json:"linux_runners"`
+	WindowsRunners Runner `json:"windows_runners"`
+	MacOSRunners   Runner `json:"macos_runners"`
 }
 
 type Runner struct {
-	Os         string `json:"os"`
 	Count      int    `json:"count"`
-	Name       string `json:"name"`
 	Arch       string `json:"arch"`
 	SelfHosted bool   `json:"self-hosted"`
 }

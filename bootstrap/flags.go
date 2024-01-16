@@ -25,6 +25,67 @@ func GenericFlags() []cli.Flag {
 	}
 }
 
+func GithubApiFlags() []cli.Flag {
+	return []cli.Flag{
+		altsrc.NewBoolFlag(&cli.BoolFlag{
+			Name:        "github-api.linux-runners.self-hosted",
+			Usage:       "Enable self-hosted Linux runners",
+			Value:       false,
+			Destination: &config.AppConfig.GithubApi.LinuxRunners.SelfHosted,
+		}),
+		altsrc.NewIntFlag(&cli.IntFlag{
+			Name:        "github-api.linux-runners.count",
+			Usage:       "Set the number of Linux runners",
+			Value:       0,
+			Destination: &config.AppConfig.GithubApi.LinuxRunners.Count,
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:        "github-api.linux-runners.arch",
+			Usage:       "Set the architecture of Linux runners",
+			Value:       "x64",
+			Destination: &config.AppConfig.GithubApi.LinuxRunners.Arch,
+		}),
+
+		altsrc.NewBoolFlag(&cli.BoolFlag{
+			Name:        "github-api.windows-runners.self-hosted",
+			Usage:       "Enable self-hosted Windows runners",
+			Value:       false,
+			Destination: &config.AppConfig.GithubApi.WindowsRunners.SelfHosted,
+		}),
+		altsrc.NewIntFlag(&cli.IntFlag{
+			Name:        "github-api.windows-runners.count",
+			Usage:       "Set the number of Windows runners",
+			Value:       0,
+			Destination: &config.AppConfig.GithubApi.WindowsRunners.Count,
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:        "github-api.windows-runners.arch",
+			Usage:       "Set the architecture of Windows runners",
+			Value:       "x64",
+			Destination: &config.AppConfig.GithubApi.WindowsRunners.Arch,
+		}),
+
+		altsrc.NewBoolFlag(&cli.BoolFlag{
+			Name:        "github-api.macos-runners.self-hosted",
+			Usage:       "Enable self-hosted MacOS runners",
+			Value:       false,
+			Destination: &config.AppConfig.GithubApi.MacOSRunners.SelfHosted,
+		}),
+		altsrc.NewIntFlag(&cli.IntFlag{
+			Name:        "github-api.macos-runners.count",
+			Usage:       "Set the number of MacOS runners",
+			Value:       0,
+			Destination: &config.AppConfig.GithubApi.MacOSRunners.Count,
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:        "github-api.macos-runners.arch",
+			Usage:       "Set the architecture of MacOS runners",
+			Value:       "x64",
+			Destination: &config.AppConfig.GithubApi.MacOSRunners.Arch,
+		}),
+	}
+}
+
 func ServerFlags() []cli.Flag {
 	flags := []cli.Flag{
 		altsrc.NewBoolFlag(&cli.BoolFlag{
@@ -48,6 +109,6 @@ func ServerFlags() []cli.Flag {
 	}
 
 	flags = append(flags, GenericFlags()...)
-
+	flags = append(flags, GithubApiFlags()...)
 	return flags
 }
