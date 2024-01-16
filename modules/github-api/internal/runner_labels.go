@@ -1,14 +1,13 @@
 package internal
 
 import (
-	"github.com/labbs/faker/config"
 	"github.com/labbs/faker/modules/github-api/domain"
 )
 
-func GenerateRunnerLabels(runner config.Runner) []domain.GithubLabel {
+func GenerateRunnerLabels(os, arch string, sh bool) []domain.GithubLabel {
 	var labels []domain.GithubLabel
 
-	switch runner.Os {
+	switch os {
 	case "linux":
 		labels = append(labels, domain.GithubLabel{
 			Id:   11,
@@ -25,7 +24,7 @@ func GenerateRunnerLabels(runner config.Runner) []domain.GithubLabel {
 		labels = append(labels, domain.GithubLabel{})
 	}
 
-	switch runner.Arch {
+	switch arch {
 	case "x64":
 		labels = append(labels, domain.GithubLabel{
 			Id:   7,
@@ -34,7 +33,7 @@ func GenerateRunnerLabels(runner config.Runner) []domain.GithubLabel {
 		})
 	}
 
-	if runner.SelfHosted {
+	if sh {
 		labels = append(labels, domain.GithubLabel{
 			Id:   5,
 			Type: "read-only",
