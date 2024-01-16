@@ -16,6 +16,5 @@ func App(initBootstrapApp *initBootstrap.Application) Application {
 	app := &Application{}
 	app.Logger = InitLogger(initBootstrapApp.Logger)
 	app.Fiber = initBootstrapApp.Fiber
-	LoadConfig(app.Logger)
 	return *app
 }
